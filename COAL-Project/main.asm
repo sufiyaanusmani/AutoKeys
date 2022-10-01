@@ -5,15 +5,19 @@ TITLE Project Name
 INCLUDE Irvine32.inc
 
 .data
+    row BYTE 0
+    col BYTE 0
+
 
 .code
     main PROC
         call clearAll
+        
 		exit
     main ENDP
 
     clearAll PROC
-        ; This procedure will clear following registers: eax, ebx, ecx, edx
+        ; procedure to clear following registers: eax, ebx, ecx, edx
         mov eax, 0
         mov ebx, 0
         mov ecx, 0
@@ -23,5 +27,14 @@ INCLUDE Irvine32.inc
 
         ret
     clearAll ENDP
+
+    jump PROC
+        ; procedure to jump to a specific coordinate
+        mov dl, col
+        mov dh, row
+        call gotoxy
+
+        ret
+    jump ENDP
 
 END main
