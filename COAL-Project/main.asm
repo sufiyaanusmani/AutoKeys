@@ -8,10 +8,20 @@ INCLUDE Irvine32.inc
 
 .code
     main PROC
-        
+        call clearAll
 		exit
     main ENDP
 
-; additional procedures here
+    clearAll PROC
+        ; This procedure will clear following registers: eax, ebx, ecx, edx
+        mov eax, 0
+        mov ebx, 0
+        mov ecx, 0
+        mov edx, 0
+        
+        ; we can also clear esi and edi
+
+        ret
+    clearAll ENDP
 
 END main
