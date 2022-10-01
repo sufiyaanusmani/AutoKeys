@@ -3,6 +3,7 @@ TITLE Project Name
 ; Project Link: https://github.com/sufiyaanusmani/COAL-Project
 
 INCLUDE Irvine32.inc
+INCLUDE Macros.inc
 
 .data
     row BYTE 0
@@ -12,7 +13,23 @@ INCLUDE Irvine32.inc
 .code
     main PROC
         call clearAll
-        
+        mWriteLn "  ASCII     Virtual-scan  Virtual-key   Keyboard flags"
+        call crlf
+
+        L1:
+            mov  eax,50
+            call Delay
+
+            call ReadKey
+            jz   L1
+
+            mShow  al,h
+            mShow  ah,h
+            mShow  dx,h
+            mShow  ebx,hnn
+
+            cmp    dx,VK_ESCAPE
+            jne    L1
 		exit
     main ENDP
 
