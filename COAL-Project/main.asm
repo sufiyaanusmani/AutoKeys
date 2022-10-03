@@ -10,16 +10,22 @@ INCLUDE Macros.inc
     col BYTE 0
     ascii BYTE ?
     ebxValue DWORD ?
+    validFlag BYTE 0
 
 .code
     main PROC
         call clearAll
         mWriteLn "  ASCII     Virtual-scan  Virtual-key   Keyboard flags"
         call crlf
+    L:
         call getKey
-        
+        call isValid
+        movzx eax, validFlag
+        call WriteInt
+    jmp L
 		exit
     main ENDP
+
 
     clearAll PROC
         ; -------------------------------------------------------- -
@@ -38,6 +44,7 @@ INCLUDE Macros.inc
         ret
     clearAll ENDP
 
+
     jump PROC
         ; -------------------------------------------------------- -
         ; Name: jump
@@ -51,6 +58,7 @@ INCLUDE Macros.inc
 
         ret
     jump ENDP
+
 
     getKey PROC
         ; -------------------------------------------------------- -
@@ -78,4 +86,27 @@ INCLUDE Macros.inc
         ret
     getKey ENDP
 
+
+    isValid PROC
+        ; -------------------------------------------------------- -
+        ; Name: isValid
+        ; Description: compares if value is in correct range
+        ; Receives: ascii, ebxValue
+        ; Returns: validFlag
+        ; -------------------------------------------------------- -
+        PUSH eax
+        movzx eax, ascii
+        cmp eax, 61h
+        jnae invalid
+        movzx eax, ascii
+        jnbe invalid
+        mov eax, ebxValue
+        cmp eax, 22h
+        jnz invalid
+        mov validFlag, 1
+
+        invalid:
+            POP eax
+        ret
+    isValid ENDP
 END main
