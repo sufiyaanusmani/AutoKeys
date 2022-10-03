@@ -8,32 +8,26 @@ INCLUDE Macros.inc
 .data
     row BYTE 0
     col BYTE 0
+    ascii BYTE ?
+    ebxValue DWORD ?
 
 .code
     main PROC
         call clearAll
         mWriteLn "  ASCII     Virtual-scan  Virtual-key   Keyboard flags"
         call crlf
-
-        L1:
-            mov  eax,50
-            call Delay
-
-            call ReadKey
-            jz   L1
-
-            mShow  al,h
-            mShow  ah,h
-            mShow  dx,h
-            mShow  ebx,hnn
-
-            cmp    dx,VK_ESCAPE
-            jne    L1
+        call getKey
+        
 		exit
     main ENDP
 
     clearAll PROC
-        ; procedure to clear following registers: eax, ebx, ecx, edx
+        ; -------------------------------------------------------- -
+        ; Name: clearAll
+        ; Description: clears all registers
+        ; Receives: void
+        ; Returns: void
+        ; -------------------------------------------------------- -
         mov eax, 0
         mov ebx, 0
         mov ecx, 0
@@ -45,12 +39,43 @@ INCLUDE Macros.inc
     clearAll ENDP
 
     jump PROC
-        ; procedure to jump to a specific coordinate
+        ; -------------------------------------------------------- -
+        ; Name: jump
+        ; Description: to move to specific coordinate in console
+        ; Receives: col, row
+        ; Returns: void
+        ; -------------------------------------------------------- -
         mov dl, col
         mov dh, row
         call gotoxy
 
         ret
     jump ENDP
+
+    getKey PROC
+        ; -------------------------------------------------------- -
+        ; Name: getKey
+        ; Description: Reads the key input by user
+        ; Receives: 
+        ; Returns: ebxValue, ascii
+        ; -------------------------------------------------------- -
+        L1:
+            mov  eax, 50
+            call Delay
+
+            call ReadKey
+            jz   L1
+
+            mShow  al, h
+            mShow  ah, h
+            mShow  dx, h
+            mShow  ebx, hnn
+            mov ascii, al
+            mov ebxValue, ebx
+
+            ; cmp    dx, VK_ESCAPE
+            ; jne    L1
+        ret
+    getKey ENDP
 
 END main
