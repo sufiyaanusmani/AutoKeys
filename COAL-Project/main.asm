@@ -9,7 +9,6 @@ INCLUDE Macros.inc
     row BYTE 0
     col BYTE 0
 
-
 .code
     main PROC
         call clearAll
