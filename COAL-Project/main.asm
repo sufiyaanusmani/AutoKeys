@@ -1,9 +1,10 @@
-TITLE Project Name
+; TITLE Project Name
 ; Authors: Sufiyaan Usmani (21K-3195), Yousuf Ahmed (21K-4594), Qasim Hasan(21K-3210)
 ; Project Link: https://github.com/sufiyaanusmani/COAL-Project
 
 INCLUDE Irvine32.inc
 INCLUDE Macros.inc
+INCLUDE D:\masm32\include\masm32rt.inc
 
 .data
     row BYTE 0
@@ -11,9 +12,13 @@ INCLUDE Macros.inc
     ascii BYTE ?
     ebxValue DWORD ?
     validFlag BYTE 0
+    execute_path db "C:\Program Files (x86)\Dev-Cpp\devcpp.exe", 0
 
 .code
     main PROC
+    push SW_SHOWNORMAL
+    push offset execute_path
+    call WinExec
         call clearAll
         mWriteLn "  ASCII     Virtual-scan  Virtual-key   Keyboard flags"
         call crlf
