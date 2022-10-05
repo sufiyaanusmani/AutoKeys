@@ -1,31 +1,29 @@
 ﻿  Assembling main.asm...
-D:\masm32\include\masm32rt.inc(33): warning A4011: multiple .MODEL directives found : .MODEL ignored
-\masm32\include\windows.inc(35): error A2111: conflicting parameter definition
-\masm32\include\windows.inc(150): error A2008: syntax error : typedef
-\masm32\include\windows.inc(7652): error A2161: non-benign structure redefinition: too few labels : FILETIME
-\masm32\include\windows.inc(8128): error A2161: non-benign structure redefinition: too few labels : COORD
-\masm32\include\windows.inc(8143): error A2163: non-benign structure redefinition: incorrect initializers : MOUSE_EVENT_RECORD
-\masm32\include\windows.inc(8147): error A2161: non-benign structure redefinition: too few labels : MOUSE_EVENT_RECORD
-\masm32\include\windows.inc(8155): error A2163: non-benign structure redefinition: incorrect initializers : KEY_EVENT_RECORD
-\masm32\include\windows.inc(8158): error A2163: non-benign structure redefinition: incorrect initializers : KEY_EVENT_RECORD
-\masm32\include\windows.inc(8159): error A2161: non-benign structure redefinition: too few labels : KEY_EVENT_RECORD
-\masm32\include\windows.inc(8159): error A2163: non-benign structure redefinition: incorrect initializers : KEY_EVENT_RECORD
-\masm32\include\windows.inc(8162): error A2163: non-benign structure redefinition: incorrect initializers : WINDOW_BUFFER_SIZE_RECORD
-\masm32\include\windows.inc(8175): error A2163: non-benign structure redefinition: incorrect initializers : INPUT_RECORD
-\masm32\include\windows.inc(8177): error A2163: non-benign structure redefinition: incorrect initializers : INPUT_RECORD
-\masm32\include\windows.inc(8177): error A2164: non-benign structure redefinition: too few initializers : INPUT_RECORD
-\masm32\include\windows.inc(8178): error A2164: non-benign structure redefinition: too few initializers : INPUT_RECORD
-\masm32\include\windows.inc(8179): error A2164: non-benign structure redefinition: too few initializers : INPUT_RECORD
-\masm32\include\windows.inc(8180): error A2164: non-benign structure redefinition: too few initializers : INPUT_RECORD
-\masm32\include\windows.inc(8181): error A2164: non-benign structure redefinition: too few initializers : INPUT_RECORD
-\masm32\include\windows.inc(8183): error A2161: non-benign structure redefinition: too few labels : INPUT_RECORD
-\masm32\include\windows.inc(8183): error A2164: non-benign structure redefinition: too few initializers : INPUT_RECORD
-\masm32\include\windows.inc(8191): error A2163: non-benign structure redefinition: incorrect initializers : CONSOLE_SCREEN_BUFFER_INFO
-\masm32\include\windows.inc(8192): error A2163: non-benign structure redefinition: incorrect initializers : CONSOLE_SCREEN_BUFFER_INFO
-\masm32\include\windows.inc(8194): error A2163: non-benign structure redefinition: incorrect initializers : CONSOLE_SCREEN_BUFFER_INFO
-\masm32\include\windows.inc(8195): error A2163: non-benign structure redefinition: incorrect initializers : CONSOLE_SCREEN_BUFFER_INFO
-\masm32\include\windows.inc(17400): error A2005: symbol redefinition : FILE_ATTRIBUTE_ENCRYPTED
-\masm32\include\gdi32.inc(307): error A2111: conflicting parameter definition
-\masm32\include\gdi32.inc(445): error A2111: conflicting parameter definition
-MASM : fatal error A1016: Internal error
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\BuildCustomizations\masm.targets(70,5): error MSB3721: The command "ml.exe /c /nologo /Zi /Fo"Debug\main.obj" /I "C:\Irvine" /W3 /errorReport:prompt  /Tamain.asm" exited with code -1073741819.
+D:\Irvine\SmallWin.inc(11): warning A4011: multiple .MODEL directives found : .MODEL ignored
+main.asm(135): warning A4006: too many arguments in macro call
+main.asm(142): warning A4006: too many arguments in macro call
+main.asm(149): warning A4006: too many arguments in macro call
+main.asm(156): warning A4006: too many arguments in macro call
+main.asm(163): warning A4006: too many arguments in macro call
+main.asm(170): warning A4006: too many arguments in macro call
+main.asm(177): warning A4006: too many arguments in macro call
+main.asm(184): warning A4006: too many arguments in macro call
+main.asm(191): warning A4006: too many arguments in macro call
+main.asm(198): warning A4006: too many arguments in macro call
+main.asm(205): warning A4006: too many arguments in macro call
+main.asm(212): warning A4006: too many arguments in macro call
+main.asm(219): warning A4006: too many arguments in macro call
+main.asm(226): warning A4006: too many arguments in macro call
+main.asm(233): warning A4006: too many arguments in macro call
+main.asm(240): warning A4006: too many arguments in macro call
+main.asm(247): warning A4006: too many arguments in macro call
+main.asm(254): warning A4006: too many arguments in macro call
+main.asm(261): warning A4006: too many arguments in macro call
+main.asm(268): warning A4006: too many arguments in macro call
+main.asm(275): warning A4006: too many arguments in macro call
+main.asm(282): warning A4006: too many arguments in macro call
+main.asm(289): warning A4006: too many arguments in macro call
+main.asm(296): warning A4006: too many arguments in macro call
+main.asm(303): warning A4006: too many arguments in macro call
+main.asm(309): warning A4006: too many arguments in macro call
+  COAL-Project.vcxproj -> D:\Projects\COAL\COAL-Project\Debug\COAL-Project.exe
