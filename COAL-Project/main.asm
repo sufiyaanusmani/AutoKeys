@@ -23,14 +23,26 @@ include D:\Irvine\Macros.inc
     ebxValue DWORD ?
     validFlag BYTE 0
     appA db "C:\Program Files (x86)\Dev-Cpp\devcpp.exe", 0
-    appG db "C:\Program Files\Git\git-bash.exe",0
-    appC db "C:\Program Files\Google\Chrome\Application\chrome.exe",0
+    beep1 db "C:\Users\Sufyan\Downloads\nircmd.exe beep 1000 500",0
+    appG db "C:\Program Files\Google\Chrome\Application\chrome.exe",0
+    appC db "C:\Windows\System32\calc.exe",0
     appP db "C:\Program Files\PuTTY\putty.exe",0
+    appS db "C:\Windows\System32\SnippingTool.exe",0
+    appV db "C:\Users\Sufyan\AppData\Local\Programs\Microsoft VS Code\Code.exe",0
+    appX db "D:\calc.exe",0
+    appW db "C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE",0
+    volUp db "C:\Users\Sufyan\Downloads\nircmd.exe changesysvolume 2000",0
+    volDown db "C:\Users\Sufyan\Downloads\nircmd.exe changesysvolume -2000",0
+    desktop db "C:\Users\Sufyan\Downloads\nircmd.exe win show class progman",0
+    mute db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 1",0
+    unmute db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 0",0
+    incBrightness db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness 10 10",0
+    decBrightness db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness -10 -10",0
 .code
     main PROC
         call clearAll
         call crlf
-    L:
+    L::
         mov validFlag, 0
         call getKey
         call isValid
@@ -133,29 +145,33 @@ include D:\Irvine\Macros.inc
             cmp al, 61h
             jnz B
             mWriteLn "A",0
-            ;push OFFSET appA
-            jmp ex
+            push OFFSET appA
+            call WinExec
+            jmp L
         B:
             mov al, ascii
             cmp al, 62h
             jnz C1
             mWriteLn "B",0
-            ;push OFFSET appB
-            jmp ex
+            push OFFSET beep1
+            call WinExec
+            jmp L
         C1:
             mov al, ascii
             cmp al, 63h
             jnz D
             mWriteLn "C",0
             push OFFSET appC
-            jmp ex
+            call WinExec
+            jmp L
         D:
             mov al, ascii
             cmp al, 64h
             jnz E
             mWriteLn "D",0
-            ;push OFFSET appD
-            jmp ex
+            push OFFSET volDown
+            call WinExec
+            jmp L
         E:
             mov al, ascii
             cmp al, 65h
@@ -168,15 +184,16 @@ include D:\Irvine\Macros.inc
             cmp al, 66h
             jnz G
             mWriteLn "F",0
-            ;push OFFSET appG
+            ;push OFFSET appF
             jmp ex
         G:
             mov al, ascii
             cmp al, 67h
             jnz H
             mWriteLn "G",0
-            ;push OFFSET appH
-            jmp ex
+            push OFFSET appG
+            call WinExec
+            jmp L
         H:
             mov al, ascii
             cmp al, 68h
@@ -201,11 +218,11 @@ include D:\Irvine\Macros.inc
         K:
             mov al, ascii
             cmp al, 6Bh
-            jnz L
+            jnz L1
             mWriteLn "K",0
             ;push OFFSET appK
             jmp ex
-        L:
+        L1:
             mov al, ascii
             cmp al, 6Ch
             jnz M
@@ -217,15 +234,17 @@ include D:\Irvine\Macros.inc
             cmp al, 6Dh
             jnz N
             mWriteLn "M",0
-            ;push OFFSET appM
-            jmp ex
+            push OFFSET mute
+            call WinExec
+            jmp L
         N:
             mov al, ascii
             cmp al, 6Eh
             jnz O
             mWriteLn "N",0
-            ;push OFFSET appN
-            jmp ex
+            push OFFSET unmute
+            call WinExec
+            jmp L
         O:
             mov al, ascii
             cmp al, 6Fh
@@ -238,14 +257,16 @@ include D:\Irvine\Macros.inc
             cmp al, 70h
             jnz Q
             mWriteLn "P",0
-            ;push OFFSET appP
-            jmp ex
+            push OFFSET appP
+            call WinExec
+            jmp L
         Q:
             mov al, ascii
             cmp al, 71h
             jnz R
             mWriteLn "Q",0
-            ;push OFFSET appQ
+            ;push OFFSET volUp
+            ;call WinExec
             jmp ex
         R:
             mov al, ascii
@@ -259,8 +280,9 @@ include D:\Irvine\Macros.inc
             cmp al, 73h
             jnz T
             mWriteLn "S",0
-            ;push OFFSET appS
-            jmp ex
+            push OFFSET appS
+            call WinExec
+            jmp L
         T:
             mov al, ascii
             cmp al, 74h
@@ -273,29 +295,33 @@ include D:\Irvine\Macros.inc
             cmp al, 75h
             jnz V
             mWriteLn "U",0
-            ;push OFFSET appU
-            jmp ex
+            push OFFSET volUp
+            call WinExec
+            jmp L
         V:
             mov al, ascii
             cmp al, 76h
             jnz W
             mWriteLn "V",0
-            ;push OFFSET appV
-            jmp ex
+            push OFFSET appV
+            call WinExec
+            jmp L
         W:
             mov al, ascii
             cmp al, 77h
             jnz X
             mWriteLn "W",0
-            ;push OFFSET appW
-            jmp ex
+            push OFFSET appW
+            call WinExec
+            jmp L
         X:
             mov al, ascii
             cmp al, 78h
             jnz Y
             mWriteLn "X",0
-            ;push OFFSET appX
-            jmp ex
+            push OFFSET incBrightness
+            call WinExec
+            jmp L
         Y:
             mov al, ascii
             cmp al, 79h
@@ -307,10 +333,11 @@ include D:\Irvine\Macros.inc
             mov al, ascii
             cmp al, 7Ah
             mWriteLn "Z",0
-            ;push OFFSET appZ
-            jmp ex
+            push OFFSET decBrightness
+            call WinExec
+            jmp L
         ex:
-        call WinExec
+        
         ret
     openApp ENDP
 END main
