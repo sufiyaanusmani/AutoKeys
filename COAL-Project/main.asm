@@ -22,22 +22,33 @@ include D:\Irvine\Macros.inc
     ascii BYTE ?
     ebxValue DWORD ?
     validFlag BYTE 0
-    appA db "C:\Program Files (x86)\Dev-Cpp\devcpp.exe", 0
-    beep1 db "C:\Users\Sufyan\Downloads\nircmd.exe beep 1000 500",0
-    appG db "C:\Program Files\Google\Chrome\Application\chrome.exe",0
-    appC db "C:\Windows\System32\calc.exe",0
-    appP db "C:\Program Files\PuTTY\putty.exe",0
-    appS db "C:\Users\Sufyan\Downloads\nircmd.exe snippingtool",0
-    appV db "C:\Users\Sufyan\AppData\Local\Programs\Microsoft VS Code\Code.exe",0
-    appX db "D:\calc.exe",0
-    appW db "C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE",0
-    volUp db "C:\Users\Sufyan\Downloads\nircmd.exe changesysvolume 2000",0
-    volDown db "C:\Users\Sufyan\Downloads\nircmd.exe changesysvolume -2000",0
-    desktop db "C:\Users\Sufyan\Downloads\nircmd.exe win show class progman",0
-    mute db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 1",0
-    unmute db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 0",0
-    incBrightness db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness 10 10",0
-    decBrightness db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness -10 -10",0
+
+    keyA db "C:\Program Files (x86)\Dev-Cpp\devcpp.exe", 0
+    keyB db "C:\Users\Sufyan\Downloads\nircmd.exe beep 1000 500",0
+    keyC db "C:\Windows\System32\calc.exe",0
+    keyD db "C:\Users\Sufyan\Downloads\nircmd.exe changesysvolume -2000",0
+    keyE db "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",0
+    keyF db "C:\Windows\explorer.exe",0
+    keyG db "C:\Program Files\Google\Chrome\Application\chrome.exe",0
+    keyH db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 2",0
+    keyI db "C:\Users\Sufyan\Downloads\nircmd.exe infobox Programmable_Keyboard COAL_Project",0
+    keyJ db "C:\Users\Sufyan\Downloads\nircmd.exe clipboard clear",0
+    keyK db "C:\Windows\System32\osk.exe",0
+    keyL db "C:\Windows\System32\LaunchTM.exe",0
+    keyM db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 1",0
+    keyN db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 0",0
+    keyO db "C:\Users\Sufyan\Downloads\nircmd.exe cdrom open f:",0
+    keyP db "C:\Program Files\PuTTY\putty.exe",0
+    keyQ db "C:\Program Files\Microsoft Office\root\Office16\POWERPNT.EXE",0
+    keyR db "C:\Program Files\Oracle\VirtualBox\VirtualBox.exe",0
+    keyS db "C:\Users\Sufyan\Downloads\nircmd.exe snippingtool",0
+    keyT db "C:\Program Files\Git\git-bash.exe",0
+    keyU db "C:\Users\Sufyan\Downloads\nircmd.exe changesysvolume 2000",0
+    keyV db "C:\Users\Sufyan\AppData\Local\Programs\Microsoft VS Code\Code.exe",0
+    keyW db "C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE",0  
+    keyX db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness 10 10",0
+    keyY db "C:\Users\Sufyan\AppData\Roaming\Zoom\bin\Zoom.exe",0
+    keyZ db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness -10 -10",0
 
     buffer BYTE ?
     bufSize DWORD ($-buffer)
@@ -154,7 +165,7 @@ include D:\Irvine\Macros.inc
             cmp al, 61h
             jnz B
             mWriteLn "A",0
-            push OFFSET appA
+            push OFFSET keyA
             call WinExec
             mov buffer, 61h
             call createLog
@@ -166,7 +177,7 @@ include D:\Irvine\Macros.inc
             cmp al, 62h
             jnz C1
             mWriteLn "B",0
-            push OFFSET beep1
+            push OFFSET keyB
             call WinExec
             mov buffer, 62h
             call createLog
@@ -178,7 +189,7 @@ include D:\Irvine\Macros.inc
             cmp al, 63h
             jnz D
             mWriteLn "C",0
-            push OFFSET appC
+            push OFFSET keyC
             call WinExec
             mov buffer, 63h
             call createLog
@@ -190,7 +201,7 @@ include D:\Irvine\Macros.inc
             cmp al, 64h
             jnz E
             mWriteLn "D",0
-            push OFFSET volDown
+            push OFFSET keyD
             call WinExec
             mov buffer, 64h
             call createLog
@@ -202,21 +213,31 @@ include D:\Irvine\Macros.inc
             cmp al, 65h
             jnz F
             mWriteLn "E",0
-            ;push OFFSET appE
-            jmp ex
+            push OFFSET keyE
+            call WinExec
+            mov buffer, 65h
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         F:
             mov al, ascii
             cmp al, 66h
             jnz G
             mWriteLn "F",0
-            ;push OFFSET appF
-            jmp ex
+            push OFFSET keyF
+            call WinExec
+            mov buffer, 66h
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         G:
             mov al, ascii
             cmp al, 67h
             jnz H
             mWriteLn "G",0
-            push OFFSET appG
+            push OFFSET keyG
             call WinExec
             mov buffer, 67h
             call createLog
@@ -228,42 +249,67 @@ include D:\Irvine\Macros.inc
             cmp al, 68h
             jnz I
             mWriteLn "H",0
-            ;push OFFSET appH
-            jmp ex
+            push OFFSET keyH
+            call WinExec
+            mov buffer, 68h
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         I:
             mov al, ascii
             cmp al, 69h
             jnz J
             mWriteLn "I",0
-            ;push OFFSET appI
-            jmp ex
+            push OFFSET keyI
+            call WinExec
+            mov buffer, 69h
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         J:
             mov al, ascii
             cmp al, 6Ah
             jnz K
             mWriteLn "J",0
-            ;push OFFSET appJ
-            jmp ex
+            push OFFSET keyJ
+            call WinExec
+            mov buffer, 6Ah
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         K:
             mov al, ascii
             cmp al, 6Bh
             jnz L1
             mWriteLn "K",0
-            ;push OFFSET appK
-            jmp ex
+            push OFFSET keyK
+            call WinExec
+            mov buffer, 6Bh
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         L1:
             mov al, ascii
             cmp al, 6Ch
             jnz M
             mWriteLn "L",0
-            ;push OFFSET appL
-            jmp ex
+            push OFFSET keyL
+            call WinExec
+            mov buffer, 6Ch
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         M:
             mov al, ascii
             cmp al, 6Dh
             jnz N
             mWriteLn "M",0
-            push OFFSET mute
+            push OFFSET keyM
             call WinExec
             mov buffer, 6Dh
             call createLog
@@ -275,7 +321,7 @@ include D:\Irvine\Macros.inc
             cmp al, 6Eh
             jnz O
             mWriteLn "N",0
-            push OFFSET unmute
+            push OFFSET keyN
             call WinExec
             mov buffer, 6Eh
             call createLog
@@ -287,14 +333,19 @@ include D:\Irvine\Macros.inc
             cmp al, 6Fh
             jnz P
             mWriteLn "O",0
-            ;push OFFSET appO
-            jmp ex
+            push OFFSET keyO
+            call WinExec
+            mov buffer, 6Fh
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         P:
             mov al, ascii
             cmp al, 70h
             jnz Q
             mWriteLn "P",0
-            push OFFSET appP
+            push OFFSET keyP
             call WinExec
             mov buffer, 70h
             call createLog
@@ -306,22 +357,31 @@ include D:\Irvine\Macros.inc
             cmp al, 71h
             jnz R
             mWriteLn "Q",0
-            ;push OFFSET volUp
-            ;call WinExec
-            jmp ex
+            push OFFSET keyQ
+            call WinExec
+            mov buffer, 71h
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         R:
             mov al, ascii
             cmp al, 72h
             jnz S
             mWriteLn "R",0
-            ;push OFFSET appR
-            jmp ex
+            push OFFSET keyR
+            call WinExec
+            mov buffer, 72h
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         S:
             mov al, ascii
             cmp al, 73h
             jnz T
             mWriteLn "S",0
-            push OFFSET appS
+            push OFFSET keyS
             call WinExec
             mov buffer, 73h
             call createLog
@@ -333,14 +393,19 @@ include D:\Irvine\Macros.inc
             cmp al, 74h
             jnz U
             mWriteLn "T",0
-            ;push OFFSET appT
-            jmp ex
+            push OFFSET keyT
+            call WinExec
+            mov buffer, 74h
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         U:
             mov al, ascii
             cmp al, 75h
             jnz V
             mWriteLn "U",0
-            push OFFSET volUp
+            push OFFSET keyU
             call WinExec
             mov buffer, 75h
             call createLog
@@ -352,7 +417,7 @@ include D:\Irvine\Macros.inc
             cmp al, 76h
             jnz W
             mWriteLn "V",0
-            push OFFSET appV
+            push OFFSET keyV
             call WinExec
             jmp L
         W:
@@ -360,7 +425,7 @@ include D:\Irvine\Macros.inc
             cmp al, 77h
             jnz X
             mWriteLn "W",0
-            push OFFSET appW
+            push OFFSET keyW
             call WinExec
             mov buffer, 77h
             call createLog
@@ -372,7 +437,7 @@ include D:\Irvine\Macros.inc
             cmp al, 78h
             jnz Y
             mWriteLn "X",0
-            push OFFSET incBrightness
+            push OFFSET keyX
             call WinExec
             mov buffer, 78h
             call createLog
@@ -384,13 +449,18 @@ include D:\Irvine\Macros.inc
             cmp al, 79h
             jnz Z
             mWriteLn "Y",0
-            ;push OFFSET appY
-            jmp ex
+            push OFFSET keyY
+            call WinExec
+            mov buffer, 79h
+            call createLog
+            mov buffer, 0ah
+            call createLog
+            jmp L
         Z:
             mov al, ascii
             cmp al, 7Ah
             mWriteLn "Z",0
-            push OFFSET decBrightness
+            push OFFSET keyZ
             call WinExec
             mov buffer, 7Ah
             call createLog
