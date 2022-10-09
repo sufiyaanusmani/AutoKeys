@@ -16,6 +16,8 @@ include D:\Irvine\Macros.inc
 
 ;include D:\Irvine\Irvine32.inc
 
+BUFFER_SIZE = 2000
+
 .data
     row BYTE 0
     col BYTE 0
@@ -23,34 +25,61 @@ include D:\Irvine\Macros.inc
     ebxValue DWORD ?
     validFlag BYTE 0
 
-    newLine BYTE 0ah,0dh
+    newLine BYTE 0ah
 
-    keyA db "C:\Program Files (x86)\Dev-Cpp\devcpp.exe",0
-    keyB db "C:\Users\Sufyan\Downloads\nircmd.exe beep 1000 500",0
-    keyC db "C:\Windows\System32\calc.exe",0
-    keyD db "C:\Users\Sufyan\Downloads\nircmd.exe changesysvolume -2000",0
-    keyE db "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",0
-    keyF db "C:\Windows\explorer.exe",0
-    keyG db "C:\Program Files\Google\Chrome\Application\chrome.exe",0
-    keyH db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 2",0
-    keyI db "C:\Users\Sufyan\Downloads\nircmd.exe infobox Programmable_Keyboard COAL_Project",0
-    keyJ db "C:\Users\Sufyan\Downloads\nircmd.exe clipboard clear",0
-    keyK db "C:\Windows\System32\osk.exe",0
-    keyL db "C:\Windows\System32\LaunchTM.exe",0
-    keyM db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 1",0
-    keyN db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 0",0
-    keyO db "C:\Users\Sufyan\Downloads\nircmd.exe cdrom open f:",0
-    keyP db "C:\Program Files\PuTTY\putty.exe",0
-    keyQ db "C:\Program Files\Microsoft Office\root\Office16\POWERPNT.EXE",0
-    keyR db "C:\Program Files\Oracle\VirtualBox\VirtualBox.exe",0
-    keyS db "C:\Users\Sufyan\Downloads\nircmd.exe snippingtool",0
-    keyT db "C:\Program Files\Git\git-bash.exe",0
-    keyU db "C:\Users\Sufyan\Downloads\nircmd.exe changesysvolume 2000",0
-    keyV db "C:\Users\Sufyan\AppData\Local\Programs\Microsoft VS Code\Code.exe",0
-    keyW db "C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE",0  
-    keyX db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness 10 10",0
-    keyY db "C:\Users\Sufyan\AppData\Roaming\Zoom\bin\Zoom.exe",0
-    keyZ db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness -10 -10",0
+    ;keyA db "C:\Program Files (x86)\Dev-Cpp\devcpp.exe",0
+    ;keyB db "C:\Users\Sufyan\Downloads\nircmd.exe beep 1000 500",0
+    ;keyC db "C:\Windows\System32\calc.exe",0
+    ;keyD db "C:\Users\Sufyan\Downloads\nircmd.exe changesysvolume -2000",0
+    ;keyE db "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",0
+    ;keyF db "C:\Windows\explorer.exe",0
+    ;keyG db "C:\Program Files\Google\Chrome\Application\chrome.exe",0
+    ;keyH db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 2",0
+    ;keyI db "C:\Users\Sufyan\Downloads\nircmd.exe infobox Programmable_Keyboard COAL_Project",0
+    ;keyJ db "C:\Users\Sufyan\Downloads\nircmd.exe clipboard clear",0
+    ;keyK db "C:\Windows\System32\osk.exe",0
+    ;keyL db "C:\Windows\System32\LaunchTM.exe",0
+    ;keyM db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 1",0
+    ;keyN db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 0",0
+    ;keyO db "C:\Users\Sufyan\Downloads\nircmd.exe cdrom open f:",0
+    ;keyP db "C:\Program Files\PuTTY\putty.exe",0
+    ;keyQ db "C:\Program Files\Microsoft Office\root\Office16\POWERPNT.EXE",0
+    ;keyR db "C:\Program Files\Oracle\VirtualBox\VirtualBox.exe",0
+    ;keyS db "C:\Users\Sufyan\Downloads\nircmd.exe snippingtool",0
+    ;keyT db "C:\Program Files\Git\git-bash.exe",0
+    ;keyU db "C:\Users\Sufyan\Downloads\nircmd.exe changesysvolume 2000",0
+    ;keyV db "C:\Users\Sufyan\AppData\Local\Programs\Microsoft VS Code\Code.exe",0
+    ;keyW db "C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE",0  
+    ;keyX db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness 10 10",0
+    ;keyY db "C:\Users\Sufyan\AppData\Roaming\Zoom\bin\Zoom.exe",0
+    ;keyZ db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness -10 -10",0
+
+    keyA db 80 DUP(?)
+    keyB db 80 DUP(?)
+    keyC db 80 DUP(?)
+    keyD db 80 DUP(?)
+    keyE db 80 DUP(?)
+    keyF db 80 DUP(?)
+    keyG db 80 DUP(?)
+    keyH db 80 DUP(?)
+    keyI db 80 DUP(?)
+    keyJ db 80 DUP(?)
+    keyK db 80 DUP(?)
+    keyL db 80 DUP(?)
+    keyM db 80 DUP(?)
+    keyN db 80 DUP(?)
+    keyO db 80 DUP(?)
+    keyP db 80 DUP(?)
+    keyQ db 80 DUP(?)
+    keyR db 80 DUP(?)
+    keyS db 80 DUP(?)
+    keyT db 80 DUP(?)
+    keyU db 80 DUP(?)
+    keyV db 80 DUP(?)
+    keyW db 80 DUP(?)
+    keyX db 80 DUP(?)
+    keyY db 80 DUP(?)
+    keyZ db 80 DUP(?)
 
 
     buffer BYTE ?
@@ -62,12 +91,15 @@ include D:\Irvine\Macros.inc
     fileHandle   HANDLE ?			; handle to output file
     bytesWritten DWORD ?
 
+
+    buffer1 BYTE BUFFER_SIZE DUP(?)
+    buffSize DWORD ?
     lineToWrite BYTE ?
 .code
     main PROC
-        call saveKeys
-        mov buffer, 0ah
-        call createLog
+        call storeKeysToVar
+        ;mov buffer, 0ah
+        ;call createLog
         call clearAll
         call crlf
     L::
@@ -521,7 +553,7 @@ include D:\Irvine\Macros.inc
 	      jmp  QuitNow
 	    .ENDIF
 
-        mov keyBufSize, SIZEOF keyA
+        mov keyBufSize, SIZEOF keyA-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyA,		; buffer pointer
@@ -538,7 +570,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyB
+        mov keyBufSize, SIZEOF keyB-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyB,		; buffer pointer
@@ -555,7 +587,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyC
+        mov keyBufSize, SIZEOF keyC-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyC,		; buffer pointer
@@ -572,7 +604,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyD
+        mov keyBufSize, SIZEOF keyD-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyD,		; buffer pointer
@@ -589,7 +621,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyE
+        mov keyBufSize, SIZEOF keyE-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyE,		; buffer pointer
@@ -606,7 +638,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyF
+        mov keyBufSize, SIZEOF keyF-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyF,		; buffer pointer
@@ -623,7 +655,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyG
+        mov keyBufSize, SIZEOF keyG-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyG,		; buffer pointer
@@ -640,7 +672,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyH
+        mov keyBufSize, SIZEOF keyH-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyH,		; buffer pointer
@@ -657,7 +689,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyI
+        mov keyBufSize, SIZEOF keyI-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyI,		; buffer pointer
@@ -674,7 +706,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyJ
+        mov keyBufSize, SIZEOF keyJ-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyJ,		; buffer pointer
@@ -691,7 +723,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyK
+        mov keyBufSize, SIZEOF keyK-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyK,		; buffer pointer
@@ -708,7 +740,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyL
+        mov keyBufSize, SIZEOF keyL-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyL,		; buffer pointer
@@ -725,7 +757,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyM
+        mov keyBufSize, SIZEOF keyM-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyM,		; buffer pointer
@@ -742,7 +774,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyN
+        mov keyBufSize, SIZEOF keyN-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyN,		; buffer pointer
@@ -759,7 +791,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyO
+        mov keyBufSize, SIZEOF keyO-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyO,		; buffer pointer
@@ -776,7 +808,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyP
+        mov keyBufSize, SIZEOF keyP-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyP,		; buffer pointer
@@ -793,7 +825,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyQ
+        mov keyBufSize, SIZEOF keyQ-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyQ,		; buffer pointer
@@ -810,7 +842,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyR
+        mov keyBufSize, SIZEOF keyR-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyR,		; buffer pointer
@@ -827,7 +859,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyS
+        mov keyBufSize, SIZEOF keyS-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyS,		; buffer pointer
@@ -844,7 +876,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyT
+        mov keyBufSize, SIZEOF keyT-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyT,		; buffer pointer
@@ -861,7 +893,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyU
+        mov keyBufSize, SIZEOF keyU-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyU,		; buffer pointer
@@ -878,7 +910,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyV
+        mov keyBufSize, SIZEOF keyV-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyV,		; buffer pointer
@@ -895,7 +927,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyW
+        mov keyBufSize, SIZEOF keyW-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyW,		; buffer pointer
@@ -912,7 +944,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyX
+        mov keyBufSize, SIZEOF keyX-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyX,		; buffer pointer
@@ -929,7 +961,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyY
+        mov keyBufSize, SIZEOF keyY-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyY,		; buffer pointer
@@ -946,7 +978,7 @@ include D:\Irvine\Macros.inc
 	        0				; overlapped execution flag
         
 
-        mov keyBufSize, SIZEOF keyZ
+        mov keyBufSize, SIZEOF keyZ-1
 	    INVOKE WriteFile,		; write text to file
 	        fileHandle,		; file handle
 	        ADDR keyZ,		; buffer pointer
@@ -960,5 +992,144 @@ include D:\Irvine\Macros.inc
         ret
     saveKeys ENDP
 
+    storeKeysToVar PROC
+       ; Open the file for input.
+	   mov	edx,OFFSET keysFileName
+	   call	OpenInputFile
+	   mov	fileHandle,eax
 
+       ; Check for errors.
+	    cmp	eax,INVALID_HANDLE_VALUE		; error opening file?
+	    jne	file_ok					; no: skip
+	    mWrite <"Cannot open file",0dh,0ah>
+	    jmp	quit						; and quit
+    file_ok:
+        ; Read the file into a buffer.
+	mov	edx,OFFSET buffer1
+	mov	ecx,BUFFER_SIZE
+	call	ReadFromFile
+	jnc	check_buffer_size			; error reading?
+	mWrite "Error reading file. "		; yes: show error message
+	call	WriteWindowsMsg
+	jmp	close_file
+	
+check_buffer_size:
+	cmp	eax,BUFFER_SIZE			; buffer large enough?
+	jb	buf_size_ok				; yes
+	mWrite <"Error: Buffer too small for the file",0dh,0ah>
+	jmp	quit						; and quit
+	
+buf_size_ok:	
+	mov	buffer1[eax],0		; insert null terminator
+	mWrite "File size: "
+	mov buffSize, eax
+	call	WriteDec			; display file size
+	call	Crlf
+
+; Display the buffer.
+	mWrite <"Buffer:",0dh,0ah,0dh,0ah>
+	mov	edx,OFFSET buffer1	; display the buffer
+	call	WriteString
+	call	Crlf
+
+close_file:
+	mov	eax,fileHandle
+	call	CloseFile
+
+    mov ecx, buffSize
+    mov edi, OFFSET buffer1
+	mov esi, 0
+    L1:
+		cmp BYTE PTR [edi], 0ah
+		je L11
+		mov al, [edi]
+		mov keyA[esi], al
+		inc esi
+        inc edi
+		jmp L1
+	L11: 
+		mov keyA[esi], 0
+
+    inc edi
+    mov esi, 0
+    L2:
+		cmp BYTE PTR [edi], 0ah
+		je L22
+		mov al, [edi]
+		mov keyB[esi], al
+		inc esi
+        inc edi
+		jmp L2
+	L22: 
+		mov keyB[esi], 0
+    
+
+    inc edi
+    mov esi, 0
+    L3:
+		cmp BYTE PTR [edi], 0ah
+		je L33
+		mov al, [edi]
+		mov keyC[esi], al
+		inc esi
+        inc edi
+		jmp L3
+	L33: 
+		mov keyC[esi], 0
+
+    inc edi
+    mov esi, 0
+    L4:
+		cmp BYTE PTR [edi], 0ah
+		je L44
+		mov al, [edi]
+		mov keyD[esi], al
+		inc esi
+        inc edi
+		jmp L4
+	L44: 
+		mov keyD[esi], 0
+
+    inc edi
+    mov esi, 0
+    L5:
+		cmp BYTE PTR [edi], 0ah
+		je L55
+		mov al, [edi]
+		mov keyE[esi], al
+		inc esi
+        inc edi
+		jmp L5
+	L55: 
+		mov keyE[esi], 0
+
+    inc edi
+    mov esi, 0
+    L6a:
+		cmp BYTE PTR [edi], 0ah
+		je L66a
+		mov al, [edi]
+		mov keyF[esi], al
+		inc esi
+        inc edi
+		jmp L6a
+	L66a: 
+		mov keyF[esi], 0
+
+    inc edi
+    mov esi, 0
+    L7:
+		cmp BYTE PTR [edi], 0ah
+		je L77
+		mov al, [edi]
+		mov keyG[esi], al
+		inc esi
+        inc edi
+		jmp L7
+	L77: 
+		mov keyG[esi], 0
+
+    quit:
+       ret
+    storeKeysToVar ENDP
 END main
