@@ -23,7 +23,9 @@ include D:\Irvine\Macros.inc
     ebxValue DWORD ?
     validFlag BYTE 0
 
-    keyA db "C:\Program Files (x86)\Dev-Cpp\devcpp.exe", 0
+    newLine BYTE 0ah,0dh
+
+    keyA db "C:\Program Files (x86)\Dev-Cpp\devcpp.exe",0
     keyB db "C:\Users\Sufyan\Downloads\nircmd.exe beep 1000 500",0
     keyC db "C:\Windows\System32\calc.exe",0
     keyD db "C:\Users\Sufyan\Downloads\nircmd.exe changesysvolume -2000",0
@@ -50,14 +52,20 @@ include D:\Irvine\Macros.inc
     keyY db "C:\Users\Sufyan\AppData\Roaming\Zoom\bin\Zoom.exe",0
     keyZ db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness -10 -10",0
 
+
     buffer BYTE ?
     bufSize DWORD ($-buffer)
+    keyBufSize DWORD 0
     errMsg BYTE "Cannot open file",0dh,0ah,0
     logFileName     BYTE "log.txt",0
+    keysFileName BYTE "keys.txt",0
     fileHandle   HANDLE ?			; handle to output file
     bytesWritten DWORD ?
+
+    lineToWrite BYTE ?
 .code
     main PROC
+        call saveKeys
         mov buffer, 0ah
         call createLog
         call clearAll
@@ -498,4 +506,459 @@ include D:\Irvine\Macros.inc
     QuitNow:
         ret
     createLog ENDP
+
+
+    saveKeys PROC
+          
+          INVOKE CreateFile,
+	      ADDR keysFileName, GENERIC_WRITE, DO_NOT_SHARE, NULL,
+	      CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0
+
+	    mov fileHandle,eax			; save file handle
+	    .IF eax == INVALID_HANDLE_VALUE
+	      mov  edx,OFFSET errMsg		; Display error message
+	      call WriteString
+	      jmp  QuitNow
+	    .ENDIF
+
+        mov keyBufSize, SIZEOF keyA
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyA,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+        mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyB
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyB,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyC
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyC,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyD
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyD,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyE
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyE,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyF
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyF,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyG
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyG,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyH
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyH,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyI
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyI,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyJ
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyJ,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyK
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyK,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyL
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyL,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyM
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyM,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyN
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyN,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyO
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyO,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyP
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyP,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyQ
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyQ,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyR
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyR,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyS
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyS,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyT
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyT,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyU
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyU,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyV
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyV,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyW
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyW,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyX
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyX,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyY
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyY,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+         mov keyBufSize, SIZEOF newLine
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR newLine,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+        
+
+        mov keyBufSize, SIZEOF keyZ
+	    INVOKE WriteFile,		; write text to file
+	        fileHandle,		; file handle
+	        ADDR keyZ,		; buffer pointer
+	        keyBufSize,			; number of bytes to write
+	        ADDR bytesWritten,	; number of bytes written
+	        0				; overlapped execution flag
+
+	    INVOKE CloseHandle, fileHandle
+
+    QuitNow:
+        ret
+    saveKeys ENDP
+
+
 END main
