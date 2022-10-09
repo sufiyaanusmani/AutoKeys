@@ -27,7 +27,7 @@ include D:\Irvine\Macros.inc
     appG db "C:\Program Files\Google\Chrome\Application\chrome.exe",0
     appC db "C:\Windows\System32\calc.exe",0
     appP db "C:\Program Files\PuTTY\putty.exe",0
-    appS db "C:\Windows\System32\SnippingTool.exe",0
+    appS db "C:\Users\Sufyan\Downloads\nircmd.exe snippingtool",0
     appV db "C:\Users\Sufyan\AppData\Local\Programs\Microsoft VS Code\Code.exe",0
     appX db "D:\calc.exe",0
     appW db "C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE",0
@@ -38,8 +38,17 @@ include D:\Irvine\Macros.inc
     unmute db "C:\Users\Sufyan\Downloads\nircmd.exe mutesysvolume 0",0
     incBrightness db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness 10 10",0
     decBrightness db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness -10 -10",0
+
+    buffer BYTE ?
+    bufSize DWORD ($-buffer)
+    errMsg BYTE "Cannot open file",0dh,0ah,0
+    logFileName     BYTE "log.txt",0
+    fileHandle   HANDLE ?			; handle to output file
+    bytesWritten DWORD ?
 .code
     main PROC
+        mov buffer, 0ah
+        call createLog
         call clearAll
         call crlf
     L::
@@ -147,6 +156,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "A",0
             push OFFSET appA
             call WinExec
+            mov buffer, 61h
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         B:
             mov al, ascii
@@ -155,6 +168,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "B",0
             push OFFSET beep1
             call WinExec
+            mov buffer, 62h
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         C1:
             mov al, ascii
@@ -163,6 +180,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "C",0
             push OFFSET appC
             call WinExec
+            mov buffer, 63h
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         D:
             mov al, ascii
@@ -171,6 +192,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "D",0
             push OFFSET volDown
             call WinExec
+            mov buffer, 64h
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         E:
             mov al, ascii
@@ -193,6 +218,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "G",0
             push OFFSET appG
             call WinExec
+            mov buffer, 67h
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         H:
             mov al, ascii
@@ -236,6 +265,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "M",0
             push OFFSET mute
             call WinExec
+            mov buffer, 6Dh
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         N:
             mov al, ascii
@@ -244,6 +277,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "N",0
             push OFFSET unmute
             call WinExec
+            mov buffer, 6Eh
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         O:
             mov al, ascii
@@ -259,6 +296,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "P",0
             push OFFSET appP
             call WinExec
+            mov buffer, 70h
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         Q:
             mov al, ascii
@@ -282,6 +323,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "S",0
             push OFFSET appS
             call WinExec
+            mov buffer, 73h
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         T:
             mov al, ascii
@@ -297,6 +342,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "U",0
             push OFFSET volUp
             call WinExec
+            mov buffer, 75h
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         V:
             mov al, ascii
@@ -313,6 +362,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "W",0
             push OFFSET appW
             call WinExec
+            mov buffer, 77h
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         X:
             mov al, ascii
@@ -321,6 +374,10 @@ include D:\Irvine\Macros.inc
             mWriteLn "X",0
             push OFFSET incBrightness
             call WinExec
+            mov buffer, 78h
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         Y:
             mov al, ascii
@@ -335,9 +392,40 @@ include D:\Irvine\Macros.inc
             mWriteLn "Z",0
             push OFFSET decBrightness
             call WinExec
+            mov buffer, 7Ah
+            call createLog
+            mov buffer, 0ah
+            call createLog
             jmp L
         ex:
         
         ret
     openApp ENDP
+
+    createLog PROC
+          INVOKE CreateFile,
+	      ADDR logFileName, GENERIC_WRITE, DO_NOT_SHARE, NULL,
+	      OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0
+
+	    mov fileHandle,eax			; save file handle
+	    .IF eax == INVALID_HANDLE_VALUE
+	      mov  edx,OFFSET errMsg		; Display error message
+	      call WriteString
+	      jmp  QuitNow
+	    .ENDIF
+
+	    ; Move the file pointer to the end of the file
+	    INVOKE SetFilePointer,
+	      fileHandle,0,0,FILE_END
+
+	    ; Append text to the file
+	    INVOKE WriteFile,
+	        fileHandle, ADDR buffer, bufSize,
+	        ADDR bytesWritten, 0
+
+	    INVOKE CloseHandle, fileHandle
+
+    QuitNow:
+        ret
+    createLog ENDP
 END main
