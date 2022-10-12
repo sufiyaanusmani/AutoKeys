@@ -18,12 +18,12 @@ main.asm(375): warning A4006: too many arguments in macro call
 main.asm(387): warning A4006: too many arguments in macro call
 main.asm(399): warning A4006: too many arguments in macro call
 main.asm(411): warning A4006: too many arguments in macro call
-main.asm(423): warning A4006: too many arguments in macro call
-main.asm(435): warning A4006: too many arguments in macro call
-main.asm(447): warning A4006: too many arguments in macro call
-main.asm(459): warning A4006: too many arguments in macro call
+main.asm(425): warning A4006: too many arguments in macro call
+main.asm(439): warning A4006: too many arguments in macro call
+main.asm(453): warning A4006: too many arguments in macro call
 main.asm(467): warning A4006: too many arguments in macro call
-main.asm(479): warning A4006: too many arguments in macro call
-main.asm(491): warning A4006: too many arguments in macro call
-main.asm(502): warning A4006: too many arguments in macro call
+main.asm(475): warning A4006: too many arguments in macro call
+main.asm(487): warning A4006: too many arguments in macro call
+main.asm(499): warning A4006: too many arguments in macro call
+main.asm(510): warning A4006: too many arguments in macro call
   COAL-Project.vcxproj -> D:\Projects\COAL\COAL-Project\Debug\COAL-Project.exe

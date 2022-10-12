@@ -16,7 +16,7 @@ include D:\Irvine\Macros.inc
 
 ;include D:\Irvine\Irvine32.inc
 
-BUFFER_SIZE = 2000
+BUFFER_SIZE = 5000
 
 .data
     row BYTE 0
@@ -54,32 +54,32 @@ BUFFER_SIZE = 2000
     ;keyY db "C:\Users\Sufyan\AppData\Roaming\Zoom\bin\Zoom.exe",0
     ;keyZ db "C:\Users\Sufyan\Downloads\nircmd.exe changebrightness -10 -10",0
 
-    keyA db 80 DUP(?)
-    keyB db 80 DUP(?)
-    keyC db 80 DUP(?)
-    keyD db 80 DUP(?)
-    keyE db 80 DUP(?)
-    keyF db 80 DUP(?)
-    keyG db 80 DUP(?)
-    keyH db 80 DUP(?)
-    keyI db 80 DUP(?)
-    keyJ db 80 DUP(?)
-    keyK db 80 DUP(?)
-    keyL db 80 DUP(?)
-    keyM db 80 DUP(?)
-    keyN db 80 DUP(?)
-    keyO db 80 DUP(?)
-    keyP db 80 DUP(?)
-    keyQ db 80 DUP(?)
-    keyR db 80 DUP(?)
-    keyS db 80 DUP(?)
-    keyT db 80 DUP(?)
-    keyU db 80 DUP(?)
-    keyV db 80 DUP(?)
-    keyW db 80 DUP(?)
-    keyX db 80 DUP(?)
-    keyY db 80 DUP(?)
-    keyZ db 80 DUP(?)
+    keyA db 150 DUP(?)
+    keyB db 150 DUP(?)
+    keyC db 150 DUP(?)
+    keyD db 150 DUP(?)
+    keyE db 150 DUP(?)
+    keyF db 150 DUP(?)
+    keyG db 150 DUP(?)
+    keyH db 150 DUP(?)
+    keyI db 150 DUP(?)
+    keyJ db 150 DUP(?)
+    keyK db 150 DUP(?)
+    keyL db 150 DUP(?)
+    keyM db 150 DUP(?)
+    keyN db 150 DUP(?)
+    keyO db 150 DUP(?)
+    keyP db 150 DUP(?)
+    keyQ db 150 DUP(?)
+    keyR db 150 DUP(?)
+    keyS db 150 DUP(?)
+    keyT db 150 DUP(?)
+    keyU db 150 DUP(?)
+    keyV db 150 DUP(?)
+    keyW db 150 DUP(?)
+    keyX db 150 DUP(?)
+    keyY db 150 DUP(?)
+    keyZ db 150 DUP(?)
 
 
     buffer BYTE ?
@@ -415,6 +415,8 @@ BUFFER_SIZE = 2000
             call createLog
             mov buffer, 0ah
             call createLog
+            mov edx, OFFSET keyR
+            call WriteString
             jmp L
         S:
             mov al, ascii
@@ -427,6 +429,8 @@ BUFFER_SIZE = 2000
             call createLog
             mov buffer, 0ah
             call createLog
+            mov edx, OFFSET keyS
+            call WriteString
             jmp L
         T:
             mov al, ascii
@@ -439,6 +443,8 @@ BUFFER_SIZE = 2000
             call createLog
             mov buffer, 0ah
             call createLog
+            mov edx, OFFSET keyT
+            call WriteString
             jmp L
         U:
             mov al, ascii
@@ -451,6 +457,8 @@ BUFFER_SIZE = 2000
             call createLog
             mov buffer, 0ah
             call createLog
+            mov edx, OFFSET keyU
+            call WriteString
             jmp L
         V:
             mov al, ascii
@@ -1128,6 +1136,268 @@ close_file:
 		jmp L7
 	L77: 
 		mov keyG[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L8:
+		cmp BYTE PTR [edi], 0ah
+		je L88
+		mov al, [edi]
+		mov keyH[esi], al
+		inc esi
+        inc edi
+		jmp L8
+	L88: 
+		mov keyH[esi], 0
+
+    inc edi
+    mov esi, 0
+    L9:
+		cmp BYTE PTR [edi], 0ah
+		je L99
+		mov al, [edi]
+		mov keyI[esi], al
+		inc esi
+        inc edi
+		jmp L9
+	L99: 
+		mov keyI[esi], 0
+
+    inc edi
+    mov esi, 0
+    L10:
+		cmp BYTE PTR [edi], 0ah
+		je L101
+		mov al, [edi]
+		mov keyJ[esi], al
+		inc esi
+        inc edi
+		jmp L10
+	L101: 
+		mov keyJ[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L11a:
+		cmp BYTE PTR [edi], 0ah
+		je L111a
+		mov al, [edi]
+		mov keyK[esi], al
+		inc esi
+        inc edi
+		jmp L11a
+	L111a: 
+		mov keyK[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L12a:
+		cmp BYTE PTR [edi], 0ah
+		je L112a
+		mov al, [edi]
+		mov keyL[esi], al
+		inc esi
+        inc edi
+		jmp L12a
+	L112a: 
+		mov keyL[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L13a:
+		cmp BYTE PTR [edi], 0ah
+		je L113a
+		mov al, [edi]
+		mov keyM[esi], al
+		inc esi
+        inc edi
+		jmp L13a
+	L113a: 
+		mov keyM[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L14a:
+		cmp BYTE PTR [edi], 0ah
+		je L114a
+		mov al, [edi]
+		mov keyN[esi], al
+		inc esi
+        inc edi
+		jmp L14a
+	L114a: 
+		mov keyN[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L15a:
+		cmp BYTE PTR [edi], 0ah
+		je L115a
+		mov al, [edi]
+		mov keyO[esi], al
+		inc esi
+        inc edi
+		jmp L15a
+	L115a: 
+		mov keyO[esi], 0
+
+    inc edi
+    mov esi, 0
+    L16a:
+		cmp BYTE PTR [edi], 0ah
+		je L116a
+		mov al, [edi]
+		mov keyP[esi], al
+		inc esi
+        inc edi
+		jmp L16a
+	L116a: 
+		mov keyP[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L17a:
+		cmp BYTE PTR [edi], 0ah
+		je L117a
+		mov al, [edi]
+		mov keyQ[esi], al
+		inc esi
+        inc edi
+		jmp L17a
+	L117a: 
+		mov keyQ[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L18a:
+		cmp BYTE PTR [edi], 0ah
+		je L118a
+		mov al, [edi]
+		mov keyR[esi], al
+		inc esi
+        inc edi
+		jmp L18a
+	L118a: 
+		mov keyR[esi], 0
+
+
+    
+    inc edi
+    mov esi, 0
+    L19a:
+		cmp BYTE PTR [edi], 0ah
+		je L119a
+		mov al, [edi]
+		mov keyS[esi], al
+		inc esi
+        inc edi
+		jmp L19a
+	L119a: 
+		mov keyS[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L20a:
+		cmp BYTE PTR [edi], 0ah
+		je L200a
+		mov al, [edi]
+		mov keyT[esi], al
+		inc esi
+        inc edi
+		jmp L20a
+	L200a: 
+		mov keyT[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L21a:
+		cmp BYTE PTR [edi], 0ah
+		je L210a
+		mov al, [edi]
+		mov keyU[esi], al
+		inc esi
+        inc edi
+		jmp L21a
+	L210a: 
+		mov keyU[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L22a:
+		cmp BYTE PTR [edi], 0ah
+		je L220a
+		mov al, [edi]
+		mov keyV[esi], al
+		inc esi
+        inc edi
+		jmp L22a
+	L220a: 
+		mov keyV[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L23a:
+		cmp BYTE PTR [edi], 0ah
+		je L230a
+		mov al, [edi]
+		mov keyW[esi], al
+		inc esi
+        inc edi
+		jmp L23a
+	L230a: 
+		mov keyW[esi], 0
+
+    inc edi
+    mov esi, 0
+    L24a:
+		cmp BYTE PTR [edi], 0ah
+		je L240a
+		mov al, [edi]
+		mov keyX[esi], al
+		inc esi
+        inc edi
+		jmp L24a
+	L240a: 
+		mov keyX[esi], 0
+
+    inc edi
+    mov esi, 0
+    L25a:
+		cmp BYTE PTR [edi], 0ah
+		je L250a
+		mov al, [edi]
+		mov keyY[esi], al
+		inc esi
+        inc edi
+		jmp L25a
+	L250a: 
+		mov keyY[esi], 0
+
+
+    inc edi
+    mov esi, 0
+    L26a:
+		cmp BYTE PTR [edi], 0ah
+		je L260a
+		mov al, [edi]
+		mov keyZ[esi], al
+		inc esi
+        inc edi
+		jmp L26a
+	L260a: 
+		mov keyZ[esi], 0
 
     quit:
        ret
